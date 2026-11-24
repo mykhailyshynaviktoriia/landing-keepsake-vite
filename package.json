@@ -8,6 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "images": "node scripts/images.mjs",
+    "lint": "npm run lint:style && npm run format:check",
     "lint:style": "stylelint \"src/**/*.scss\"",
     "format": "prettier --write \"src/**/*.{scss,js,css,html,json}\"",
     "format:check": "prettier --check \"src/**/*.{scss,js,css,html,json}\"",
