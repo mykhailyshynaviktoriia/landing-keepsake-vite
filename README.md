@@ -1,6 +1,6 @@
 # Landing Keepsake (Vite + Pug + SCSS)
 
-Демо на GitHub Pages: https://mykhailyshynviktoriia.github.io/landing-keepsake-vite/
+Демо на GitHub Pages: https://mykhailyshynaviktoriia.github.io/landing-keepsake-vite/
 
 ## Вимоги до середовища та команди
 
