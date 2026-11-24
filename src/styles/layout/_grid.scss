@@ -1,4 +1,15 @@
+@use '../utils' as *;
+
 .container {
-  width: min(1200px, 90%);
-  margin-inline: auto;
+  width: 100%;
+  padding-left: rem(20);
+  padding-right: rem(20);
+  margin-left: auto;
+  margin-right: auto;
+
+  @include mq(lg) {
+    max-width: rem(1100);
+    padding-left: rem(90);
+    padding-right: rem(90);
+  }
 }

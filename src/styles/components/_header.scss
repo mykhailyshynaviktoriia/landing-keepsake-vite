@@ -1,15 +1,114 @@
-@use '../utils/mixins' as *;
+@use '../utils' as *;
 
 .header {
-  // declare mixins before styles
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: rem(70);
+  background: #fff;
+  border-bottom: rem(1) solid var(--color-border);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
 
-  @include flex-center;
-  background: var(--color-primary);
-  color: white;
-  padding: 1rem;
-  text-align: center;
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-  h1 {
-    font-size: 2rem;
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: rem(15);
+  }
+
+  &__favourites {
+    @include flex-center;
+
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: rem(36);
+    height: rem(36);
+  }
+
+  &__menu-checkbox {
+    display: none;
+  }
+}
+
+.logo {
+  font-family: var(--font-logo);
+  font-size: rem(26);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  display: flex;
+  align-items: center;
+  gap: rem(10);
+
+  @include focus-ring(rem(2));
+
+  &__circle {
+    @include flex-center;
+
+    width: rem(38);
+    height: rem(38);
+    background-color: var(--color-text-dark);
+    color: #fff;
+    border-radius: 50%;
+    font-size: rem(20);
+  }
+}
+
+.nav {
+  display: none;
+
+  @include mq(desktop) {
+    display: block;
+  }
+
+  &__list {
+    display: flex;
+    gap: rem(28);
+  }
+
+  &__link {
+    font-family: var(--font-heading);
+    font-size: rem(13);
+    text-transform: uppercase;
+    letter-spacing: rem(1);
+    color: var(--color-text-dark);
+
+    &:hover,
+    &:focus-visible,
+    &--active {
+      color: var(--color-accent);
+    }
+  }
+}
+
+.burger-btn {
+  width: rem(40);
+  height: rem(40);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: rem(6);
+  cursor: pointer;
+
+  @include mq(desktop) {
+    display: none;
+  }
+
+  @include focus-ring(rem(2));
+
+  &__line {
+    display: block;
+    width: 100%;
+    height: rem(3);
+    background-color: var(--color-text-dark);
+    transition: 0.3s;
   }
 }

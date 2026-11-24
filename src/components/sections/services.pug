@@ -1,0 +1,13 @@
+section#services.services-section
+  .container
+    .section-header
+      h2.section-title What We Do
+      p.section-subtitle Practical design and creative craft tailored to your goals.
+
+    .services-grid
+      each service in servicesList
+        article.service-card
+          .service-icon
+            img(src=`${service.src}` alt=service.alt width="48" height="48" loading="lazy")
+          h3.service-title #{service.title}
+          p.service-text #{service.text}

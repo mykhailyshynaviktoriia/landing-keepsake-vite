@@ -1,16 +1,20 @@
-*, html, body {
-  font-family: "Montserrat", sans-serif;
+@use '../utils' as *;
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: rem(18);
+  text-transform: uppercase;
+  letter-spacing: rem(1.5);
+  color: var(--color-text-dark);
+  margin-bottom: rem(20);
 }
 
-html {
-  scroll-behavior: smooth;
+.section-header-centered {
+  text-align: center;
+  margin-bottom: rem(50);
 }
 
-a {
-  cursor: pointer;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
+.section-desc {
+  font-size: rem(14);
+  color: var(--color-text);
 }

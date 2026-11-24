@@ -1,7 +1,111 @@
+@use '../utils' as *;
+
 .footer {
-  background: var(--color-secondary);
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  font-size: 0.9rem;
+  background-color: var(--color-footer);
+  color: #fff;
+  padding: rem(80) 0 rem(30);
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    gap: rem(40);
+
+    @include mq(desktop) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__links-grid {
+    display: flex;
+    flex-direction: column;
+    gap: rem(40);
+
+    @include mq(desktop) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  &__col {
+    h4 {
+      font-family: var(--font-heading);
+      font-size: rem(14);
+      text-transform: uppercase;
+      margin-bottom: rem(20);
+      letter-spacing: rem(1);
+    }
+
+    ul {
+      li {
+        margin-bottom: rem(12);
+      }
+    }
+
+    a {
+      color: var(--color-muted);
+      font-size: rem(14);
+
+      &:hover,
+      &:focus-visible {
+        color: #fff;
+      }
+    }
+  }
+
+  &__newsletter-sub {
+    font-size: rem(13);
+    color: var(--color-muted);
+    margin-bottom: rem(15);
+  }
+
+  &__newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: rem(10);
+    margin-bottom: rem(10);
+
+    @include mq(desktop) {
+      flex-direction: row;
+    }
+  }
+
+  &__input {
+    padding: rem(12);
+    border: rem(1) solid rgb(255 255 255 / 20%);
+    background: transparent;
+    color: #fff;
+  }
+
+  &__checkbox-label {
+    font-size: rem(12);
+    color: var(--color-muted);
+    display: flex;
+    align-items: center;
+    gap: rem(8);
+  }
+
+  &__socials {
+    display: flex;
+    gap: rem(15);
+    align-items: center;
+  }
+
+  &__social-icon {
+    width: rem(24);
+    height: rem(24);
+    display: block;
+  }
+
+  &__bottom {
+    border-top: rem(1) solid rgb(255 255 255 / 10%);
+    padding-top: rem(25);
+    margin-top: rem(40);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: rem(15);
+    font-size: rem(13);
+    color: var(--color-muted);
+  }
 }

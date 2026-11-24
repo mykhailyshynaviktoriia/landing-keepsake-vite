@@ -1,0 +1,18 @@
+section#portfolio.portfolio-section
+  .container
+    .section-header
+      h2.section-title Our Selected Work
+      p.section-subtitle Branding, identity, print, web and motion projects.
+
+    .portfolio-filters(role="group" aria-label="Filter projects by category")
+      each cat in filterCategories
+        - const inputId = `filter-${cat.id}`
+        if cat.checked
+          input.filter-input(type="radio" name="portfolio-filter" id=inputId value=cat.id checked)
+        else
+          input.filter-input(type="radio" name="portfolio-filter" id=inputId value=cat.id)
+        label.filter-label(for=inputId) #{cat.label}
+
+    .portfolio-grid
+      each work in portfolioWorks
+        +work-card(work)

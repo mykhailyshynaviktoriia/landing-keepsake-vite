@@ -1,0 +1,35 @@
+mixin picture(opts)
+  -
+    const {
+      name,
+      alt = '',
+      imgClass = '',
+      width = 800,
+      height = 600,
+      sizes = '(min-width: 1280px) 357px, (min-width: 768px) 50vw, 100vw',
+      lazy = true,
+      highPriority = false,
+    } = opts;
+    const base = `/images/${name}`;
+
+  picture
+    source(
+      type="image/avif"
+      srcset=`${base}-400.avif 400w, ${base}-800.avif 800w`
+      sizes=sizes
+    )
+    source(
+      type="image/webp"
+      srcset=`${base}-400.webp 400w, ${base}-800.webp 800w`
+      sizes=sizes
+    )
+    img(
+      class=imgClass
+      src=`${base}-800.jpg`
+      alt=alt
+      width=width
+      height=height
+      decoding="async"
+      loading=lazy ? "lazy" : null
+      fetchpriority=highPriority ? "high" : null
+    )

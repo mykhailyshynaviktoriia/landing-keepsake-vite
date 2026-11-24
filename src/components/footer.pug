@@ -1,4 +1,58 @@
 footer.footer
-    .footer-outer
-        .footer-inner
-           
+  .container
+    .footer__container
+      .footer__links-grid
+        .footer__col
+          h4 STUDIO
+          ul
+            li
+              a(href="#about") About us
+            li
+              a(href="#works") Our works
+            li
+              a(href="#journal") Journal
+            li
+              a(href="#careers") Careers
+            li
+              a(href="#contact") Contact
+
+        .footer__col
+          h4 SERVICES
+          ul
+            li
+              a(href="#services") Web design
+            li
+              a(href="#services") Motion video
+            li
+              a(href="#services") Print design
+            li
+              a(href="#services") Illustration
+            li
+              a(href="#services") Brand strategy
+
+      .footer__col
+        h4 Newsletter
+        p.footer__newsletter-sub Fresh case studies and design notes, once a month.
+        form.footer__newsletter-form(action="#" method="post")
+          input.footer__input(type="email" name="email" placeholder="Your email address" required)
+          button.btn.btn--primary(type="submit") Subscribe
+        label.footer__checkbox-label
+          input(type="checkbox" name="agree" required)
+          span I agree to the privacy policy
+
+    .footer__bottom
+      p © 2026 Keepsake. All rights reserved.
+      -
+        const defaultSocials = [
+          { label: 'RSS', href: '#rss', img: '/src/assets/rss.jpg' },
+          { label: 'Facebook', href: '#facebook', img: '/src/assets/f.jpg' },
+          { label: 'Twitter', href: '#twitter', img: '/src/assets/tw.jpg' },
+          { label: 'Dribbble', href: '#dribbble', img: '/src/assets/dr.jpg' },
+          { label: 'Pinterest', href: '#pinterest', img: '/src/assets/p.jpg' }
+        ]
+      .footer__socials
+        each soc in defaultSocials
+          a.footer__social-link(href=soc.href aria-label=soc.label)
+            img.footer__social-icon(src=soc.img alt=soc.label)
+
+a.scroll-top(href="#top" aria-label="Scroll to top") &uarr;

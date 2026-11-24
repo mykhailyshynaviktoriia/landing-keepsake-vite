@@ -1,0 +1,40 @@
+mixin btn(text, href='#', variant='primary')
+  - const btnClass = variant === 'secondary' ? 'btn btn-secondary' : variant === 'outline' ? 'btn btn-outline' : 'btn btn-primary'
+  a(class=btnClass href=href)&attributes(attributes)
+    if block
+      block
+    | #{text}
+
+mixin icon(name, size=16)
+  case name
+    when 'mail'
+      svg(width=size height=size viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true")
+        path(d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z")
+        polyline(points="22,6 12,13 2,6")
+    when 'heart'
+      span(aria-hidden="true") &#9825;
+    when 'arrow-up'
+      span(aria-hidden="true") &uarr;
+    default
+      span.icon-fallback(aria-hidden="true") •
+
+mixin work-card(work)
+  -
+    const rawName = work.imageName || work.name || (work.src ? work.src.split('/').pop().replace(/\.[^.]+$/, '').toLowerCase() : '');
+    const isAbove = Boolean(work.isAboveFold);
+  article.portfolio-card(data-category=work.category)
+    a(href=work.href || '#')
+      .card-image-wrap
+        +picture({
+          name: rawName,
+          alt: work.alt,
+          width: 360,
+          height: 284,
+          sizes: '(min-width: 1280px) 357px, (min-width: 768px) 50vw, 100vw',
+          lazy: !isAbove,
+          highPriority: isAbove
+        })
+      .card-overlay
+        span.plus-icon +
+        h3.card-title #{work.title}
+        span.card-category #{work.category}

@@ -1,0 +1,11 @@
+section.clients-section
+  .container
+    .stats-grid
+      each stat in statsList
+        .stat-item
+          strong.stat-number #{stat.number}
+          span.stat-label #{stat.label}
+
+    .clients-list
+      each logo in clientLogos
+        .client-logo #{logo}

@@ -1,3 +1,338 @@
-section {
-  padding: 3rem 0;
+@use '../utils' as *;
+
+.hero {
+  background-color: var(--color-bg-light);
+  padding: rem(140) 0 rem(80);
+  text-align: center;
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: rem(26);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: rem(3);
+    color: var(--color-text-dark);
+    margin-bottom: rem(20);
+    line-height: 1.25;
+
+    @include mq(desktop) {
+      font-size: rem(40);
+    }
+  }
+
+  &__subtitle {
+    font-size: rem(15);
+    color: var(--color-text);
+    margin: 0 auto rem(30);
+    max-width: rem(600);
+  }
+
+  &__buttons {
+    display: flex;
+    flex-direction: column;
+    gap: rem(15);
+    max-width: rem(720);
+    margin: 0 auto;
+
+    @include mq(desktop) {
+      flex-direction: row;
+      justify-content: center;
+    }
+
+    .btn {
+      width: 100%;
+
+      @include mq(desktop) {
+        width: auto;
+      }
+    }
+  }
+}
+
+.portfolio {
+  padding: rem(80) 0;
+
+  &__header {
+    margin-bottom: rem(30);
+
+    .section-title {
+      margin-bottom: rem(15);
+    }
+  }
+
+  &__filters {
+    display: flex;
+    gap: rem(10);
+    overflow-x: auto;
+    padding-bottom: rem(10);
+  }
+
+  &__filter-input {
+    display: none;
+  }
+
+  &__chip {
+    padding: rem(8) rem(18);
+    border: rem(1) solid var(--color-border);
+    font-size: rem(12);
+    font-family: var(--font-heading);
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: rem(14);
+    margin-bottom: rem(40);
+
+    @include mq(desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &__footer {
+    text-align: center;
+  }
+}
+
+.cta {
+  background-color: var(--color-bg-light);
+  padding: rem(80) 0;
+  text-align: center;
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: rem(24);
+    text-transform: uppercase;
+    letter-spacing: rem(2);
+    color: var(--color-text-dark);
+    margin-bottom: rem(25);
+  }
+}
+
+.services {
+  padding: rem(80) 0;
+
+  &__header {
+    text-align: center;
+    margin-bottom: rem(50);
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: rem(30);
+    margin-bottom: rem(60);
+    text-align: center;
+
+    @include mq(desktop) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__icon-circle {
+    @include flex-center;
+
+    width: rem(80);
+    height: rem(80);
+    background-color: var(--color-bg-light);
+    border-radius: 50%;
+    margin: 0 auto rem(20);
+
+    img {
+      width: rem(36);
+      height: rem(36);
+      object-fit: contain;
+    }
+  }
+
+  &__card-title {
+    font-family: var(--font-heading);
+    font-size: rem(16);
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin-bottom: rem(10);
+    letter-spacing: rem(1);
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: rem(30);
+    border-top: rem(1) solid var(--color-border);
+    border-bottom: rem(1) solid var(--color-border);
+    padding: rem(40) 0;
+    text-align: center;
+
+    @include mq(desktop) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  &__stat-number {
+    font-family: var(--font-heading);
+    font-size: rem(38);
+    color: var(--color-text-dark);
+    margin-bottom: rem(5);
+  }
+
+  &__stat-label {
+    font-size: rem(13);
+    color: var(--color-muted);
+    text-transform: uppercase;
+  }
+}
+
+.clients {
+  padding: rem(60) 0 rem(80);
+  text-align: center;
+
+  &__logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: rem(30);
+    margin: rem(40) 0;
+    font-family: var(--font-heading);
+    font-size: rem(18);
+    color: var(--color-muted);
+    letter-spacing: rem(2);
+  }
+
+  &__testimonial {
+    background-color: var(--color-bg-light);
+    padding: rem(50) rem(30);
+    position: relative;
+    max-width: rem(850);
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  &__quote-icon {
+    font-size: rem(40);
+    color: var(--color-accent);
+    line-height: 1;
+    margin-bottom: rem(15);
+    font-family: serif;
+  }
+
+  &__testimonial-text {
+    font-size: rem(18);
+    font-weight: 300;
+    color: var(--color-text-dark);
+    margin-bottom: rem(30);
+    line-height: 1.6;
+  }
+
+  &__author {
+    display: flex;
+    align-items: center;
+    gap: rem(15);
+  }
+
+  &__avatar {
+    width: rem(44);
+    height: rem(44);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__author-name {
+    display: block;
+    font-size: rem(14);
+    color: var(--color-text-dark);
+  }
+
+  &__author-role {
+    font-size: rem(12);
+    color: var(--color-muted);
+  }
+
+  &__dots {
+    position: absolute;
+    bottom: rem(30);
+    right: rem(30);
+    display: flex;
+    gap: rem(8);
+  }
+
+  &__dot {
+    width: rem(16);
+    height: rem(3);
+    background-color: var(--color-border);
+
+    &--active {
+      background-color: var(--color-accent);
+    }
+  }
+}
+
+.journal {
+  padding: rem(60) 0 rem(90);
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: rem(36);
+    margin-top: rem(35);
+
+    @include mq(desktop) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: rem(44) rem(36);
+    }
+  }
+
+  &__card {
+    display: flex;
+    flex-direction: column;
+    gap: rem(18);
+  }
+
+  &__img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__meta {
+    font-size: rem(11);
+    color: var(--color-muted);
+    text-transform: uppercase;
+    margin-bottom: rem(8);
+    letter-spacing: rem(0.8);
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: rem(16);
+    font-weight: 500;
+    text-transform: uppercase;
+    color: var(--color-text-dark);
+    margin-bottom: rem(10);
+    line-height: 1.3;
+  }
+
+  &__snippet {
+    font-size: rem(13);
+    color: var(--color-text);
+    margin-bottom: rem(12);
+    line-height: 1.5;
+  }
+
+  &__read-more {
+    font-family: var(--font-heading);
+    font-size: rem(11);
+    color: var(--color-accent);
+    text-transform: uppercase;
+    letter-spacing: rem(1);
+  }
 }

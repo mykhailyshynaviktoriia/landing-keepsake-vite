@@ -1,3 +1,24 @@
+input#menu-toggle.header__menu-checkbox(type="checkbox")
+
 header.header
-    .header-inner
-        include navigation
+  .container.header__container
+    a.logo(href="#top")
+      span.logo__circle K
+      span.logo__text keepsake
+
+    nav.nav(aria-label="Primary navigation")
+      ul.nav__list
+        each item in navItems
+          li.nav__item
+            if item.active
+              a.nav__link.nav__link--active(href=item.href) #{item.label}
+            else
+              a.nav__link(href=item.href) #{item.label}
+
+    .header__actions
+      button.header__favourites(type="button" aria-label="Favourites") &#9825;
+      label.burger-btn(for="menu-toggle")
+        span.visually-hidden Toggle menu
+        span.burger-btn__line(aria-hidden="true")
+        span.burger-btn__line(aria-hidden="true")
+        span.burger-btn__line(aria-hidden="true")

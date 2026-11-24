@@ -1,13 +1,55 @@
-.button {
-  background: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 0.75rem 1.5rem;
+@use '../utils' as *;
+
+.btn {
+  @include flex-center(rem(10));
+
+  display: inline-flex;
+  padding: rem(14) rem(28);
+  font-family: var(--font-heading);
+  font-size: rem(13);
+  text-transform: uppercase;
+  letter-spacing: 1px;
   cursor: pointer;
-  transition: background 0.2s;
+  border: none;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 
-  &:hover {
+  &:focus-visible {
+    @include focus-ring;
+  }
 
+  &--primary {
+    background-color: var(--color-accent);
+    color: #fff;
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-accent-hover);
+    }
+  }
+
+  &--secondary {
+    background-color: transparent;
+    border: 1px solid var(--color-text-dark);
+    color: var(--color-text-dark);
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--color-text-dark);
+      color: #fff;
+    }
+  }
+
+  &--outline {
+    background-color: #fff;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-dark);
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-text-dark);
+    }
   }
 }

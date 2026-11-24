@@ -1,19 +1,151 @@
-extends ../layouts/main
+extends ../layouts/main.pug
+include ../mixins/picture.pug
+include ../mixins/index.pug
 
-block fonts
-    include ../includes/fonts
+block append data
+  include ../data/filters.pug
+  include ../data/navigation.pug
+  include ../data/services.pug
+  include ../data/stats.pug
+  include ../data/works.pug
+  include ../data/journal.pug
+  include ../data/footer.pug
 
-append meta
-    include ../includes/meta
+block append meta
+  meta(property="og:type" content="website")
 
-block data
-    
+block title
+  title Keepsake — Digital &amp; Branding Agency
 
 block header
-    include ../components/header
+  include ../components/header.pug
 
 block content
-   
+  #top
+
+  section.hero
+    .container.hero__container
+      h1.hero__title We're Keepsake, a digital &amp; branding agency
+      p.hero__subtitle Specializing in web design, poster, motion video, based in London. We love to turn ideas into beautiful things.
+      .hero__buttons
+        +btn('See our works', '#works', 'primary')
+        +btn('Get in touch', '#contact', 'secondary')(aria-label="Get in touch")
+
+  section.portfolio
+    .container
+      .portfolio__header
+        h2.section-title Our awesome works
+        .portfolio__filters
+          each cat in filterCategories
+            input.portfolio__filter-input(type="radio" name="portfolio-filter" id="filter-" + cat.id checked=cat.checked)
+            label.portfolio__chip(for="filter-" + cat.id) #{cat.label}
+
+      .portfolio__grid
+        each work in portfolioWorks
+          +work-card(work)
+
+      .portfolio__footer
+        +btn('Load more works', '#works', 'outline')
+
+  section.cta
+    .container
+      h2.cta__title Would you love to work with us?
+      +btn('Contact us', '#contact', 'primary')
+        +icon('mail', 16)
+
+  section.services
+    .container
+      .services__header
+        h2.section-title What do we do
+        p.section-desc We are a small team of designers and makers who help brands look their best online and offline.
+
+      - const defaultServiceIcons = ['icon1', 'icon2', 'icon3', 'icon4']
+      .services__grid
+        each srv, idx in servicesList
+          - const srvIcon = srv.icon || defaultServiceIcons[idx]
+          article.services__card
+            .services__icon-circle
+              if srvIcon === 'icon1' || srvIcon === 'icon2' || srvIcon === 'icon3'
+                +picture({
+                  name: srvIcon,
+                  alt: srv.title,
+                  imgClass: 'services__icon-img',
+                  width: 36,
+                  height: 36,
+                  sizes: '36px',
+                  lazy: true
+                })
+              else if srvIcon
+                +icon(srvIcon, 36)
+            h3.services__card-title #{srv.title}
+            if srv.desc
+              p.section-desc #{srv.desc}
+
+      .services__stats
+        each st in statsList
+          .services__stat-item
+            .services__stat-number #{st.value || st.number || st.count}
+            .services__stat-label #{st.label}
+
+  section.clients
+    .container
+      h2.section-title Clients &amp; kind words
+      p.section-desc Some of the teams that trusted us with their brands.
+
+      .clients__logos
+        span.clients__logo NORDLY
+        span.clients__logo Halcyon
+        span.clients__logo ARCO
+        span.clients__logo pinewood
+        span.clients__logo VELA
+        span.clients__logo ostra
+
+      .clients__testimonial
+        .clients__quote-icon &ldquo;
+        p.clients__testimonial-text Keepsake turned a vague brief into a brand we are proud of. The team was fast, honest about trade-offs and obsessed with the details.
+        .clients__author
+          +picture({
+            name: 'avatar',
+            alt: 'Olena Marchenko',
+            imgClass: 'clients__avatar',
+            width: 44,
+            height: 44,
+            sizes: '44px',
+            lazy: true
+          })
+          .clients__author-info
+            strong.clients__author-name Olena Marchenko
+            span.clients__author-role Marketing Lead, Nordly
+        .clients__dots
+          span.clients__dot.clients__dot--active
+          span.clients__dot
+          span.clients__dot
+
+  section.journal
+    .container
+      h2.section-title From the journal
+      p.section-desc Notes on process, case studies and things that inspire us.
+
+      - const defaultJournalThumbs = ['thumb', 'thumb(1)', 'thumb(2)', 'thumb(3)']
+      .journal__grid
+        each post, idx in journalPosts
+          - const postName = post.imageName || defaultJournalThumbs[idx]
+          article.journal__card
+            a.journal__img-link(href=post.href)
+              +picture({
+                name: postName,
+                alt: post.title,
+                imgClass: 'journal__img',
+                width: 360,
+                height: 240,
+                sizes: '(min-width: 1280px) 357px, (min-width: 768px) 50vw, 100vw',
+                lazy: true
+              })
+            .journal__body
+              .journal__meta #{post.date}
+              h3.journal__title #{post.title}
+              p.journal__snippet #{post.excerpt}
+              a.journal__read-more(href=post.href) Read more &gt;
 
 block footer
-    include ../components/footer
+  include ../components/footer.pug
